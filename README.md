@@ -1,40 +1,86 @@
-# Real-Time Face Recognition & Automated Attendance System
+# 🎯 AI Face Recognition Attendance System
 
-An advanced, production-grade computer vision and deep learning application engineered in Python. This system automates identity verification and attendance logging by combining high-throughput video stream ingestion with deep convolutional neural networks (CNNs). The pipeline orchestrates frame capture via physical hardware peripherals, processes facial localization spatial constraints, generates high-dimensional geometric embeddings, evaluates matching confidence, and records transactional records into a structured CSV database log.
+## 📌 Project Description
 
----
+The AI Face Recognition Attendance System is a real-time attendance application developed using Python, OpenCV, DeepFace, and TensorFlow.
 
-## 🏗️ System Architecture & End-to-End Workflow
+The system captures live video through a webcam and verifies the detected face with a stored image dataset. When the face matches, the system automatically marks attendance with the current date and time in a CSV file.
 
-The application runs a continuous, multi-threaded pipeline across four primary decoupled phases:
-
-1. **High-Throughput Video Acquisition:** The system establishes an active IO hardware hook to the onboard webcam peripheral, ingesting raw image matrices continuously at a target frames-per-second (FPS) rate.
-2. **Spatial Localization & Preprocessing:** Frames are evaluated via a structural face cascade or neural detector. The system isolates the absolute boundaries of target faces, crops the coordinates into isolated Regions of Interest (ROIs), normalizes pixel value scales, and prepares the tensor for network injection.
-3. **Deep Biometric Feature Extraction:** The cropped face array is passed to an evaluation engine backend (such as VGGFace). The deep layers map the structural ratios of facial topography (distance between eyes, nose bridge height, jaw curves) into a high-dimensional mathematical vector (embedding).
-4. **Distance Matching Engine & Throttle Logging:** The calculated live vector is matched against stored reference vectors using spatial proximity formulas. If a match breaches the confidence boundary, identity is verified. The storage loop verifies if the user was flagged recently to prevent logging spam, then safely appends raw logs down to storage.
+If the registered user is not detected, the system displays an absence status.
 
 ---
 
-## 📁 Repository Blueprint & Subsystem Mapping
+## 🚀 Features
 
-* **dataset/**: Centralized local facial biometrics repository containing reference directories.
-    * **Arthi/**: Target identity folder for subject: Arthi containing ground-truth anchor images.
-* **attendance.csv**: Main tabular database ledger processing structured, timestamped output logs.
-* **attendance_system.py**: Primary production application orchestrator layout.
-* **camera_test.py**: Low-level hardware diagnostic & FPS stability script to verify webcam streams.
-* **capture_faces.py**: Data ingestion module tracking camera snapshots for new user enrollment.
-* **check_face.py**: Isolated script executing deterministic dual-image validation checks.
-* **deepface_test.py**: Benchmarking sandbox evaluating deep network topologies and backend weights.
-* **face_detection.py**: Spatial tracking, array scaling, and bounding box calculator module.
-* **live_recognition.py**: Live execution loop balancing thread consumers and UI display windows.
-* **real_attendance.py**: I/O transaction framework binding classifications to final database updates.
-* **test.py**: Isolated staging environment for experimental patches and minor code updates.
+* Real-time webcam access
+* AI-based face verification using DeepFace
+* Automatic attendance marking
+* Present and Absent status display
+* Attendance saved in CSV format
+* Live video display using OpenCV
 
 ---
 
-## 🛠️ Technology Stack & Low-Level Dependencies
+## 🛠️ Technologies Used
 
-* **Language Runtime Environment:** Python 3.13.5
-* **Real-time Graphics & Matrix Computing:** OpenCV (`opencv-python`) — Manages active media streaming, frame rendering pipelines, graphical interface window bindings, and coordinate overlay calculations.
-* **Deep Neural Networks Engine:** DeepFace & TensorFlow — Handles background neural layers, loads pre-trained topological configurations, handles weights, and calculates matrix-based vector distances.
-* **Structured Data Processing:** Pandas & NumPy — Powers matrix manipulations, relational dataset parsing, and fast file transaction writes.
+* Python
+* OpenCV
+* DeepFace
+* TensorFlow
+* NumPy
+* CSV File Handling
+
+---
+
+## ⚙️ Project Workflow
+
+1. Open webcam and capture live video.
+2. Store the registered user's image in the dataset folder.
+3. Compare the live webcam frame with the stored image using DeepFace.
+4. If the face matches:
+
+   * Display **"Arthi Present"**
+   * Store attendance with date and time.
+5. If the face is not detected:
+
+   * Display **"Arthi Absent"**
+6. Attendance is automatically saved in `attendance.csv`.
+
+---
+
+## 📂 Project Structure
+
+face-recognition-system/
+
+├── dataset/
+
+│ └── arthi.jpg
+
+├── attendance.csv
+
+├── real_attendance.py
+
+└── check_face.py
+
+---
+
+## 📊 Output
+
+* Real-time face recognition using webcam.
+* Displays attendance status on screen.
+* Saves attendance records automatically.
+
+---
+
+## 🌍 Real World Applications
+
+* College Attendance Systems
+* School Attendance Management
+* Office Employee Attendance
+* Smart Classroom Applications
+
+---
+
+## 💡 Conclusion
+
+This project demonstrates how Artificial Intelligence and Computer Vision can automate attendance management using face recognition technology. It provides a simple and efficient solution for real-time attendance tracking.
